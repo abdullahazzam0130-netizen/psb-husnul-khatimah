@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0f5132" />
+  <meta name="description" content="Portal Pendaftaran Santri Baru Pesantren Mitra Husnul Khatimah Tanjungsari, Sumedang" />
+  <title>PSB — Pesantren Mitra Husnul Khatimah</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+  <!-- =================== SPLASH SCREEN =================== -->
+  <section id="screen-splash" class="screen screen-splash is-active" aria-label="Memuat aplikasi">
+    <div class="splash-inner">
+      <div class="splash-logo" aria-hidden="true">
+        <img src="assets/logo.svg" alt="" width="96" height="96" />
+      </div>
+      <h1 class="splash-title">
+        <span class="splash-title-small">Pesantren</span>
+        <span class="splash-title-big">Mitra Husnul Khatimah</span>
+      </h1>
+      <div class="splash-loader" aria-live="polite">
+        <span class="splash-loader-dot"></span>
+        <span class="splash-loader-dot"></span>
+        <span class="splash-loader-dot"></span>
+      </div>
+      <p class="splash-status">Memuat…</p>
+    </div>
+    <div class="splash-pattern" aria-hidden="true"></div>
+  </section>
+
+  <!-- =================== APP ROOT =================== -->
+  <main id="app-root" class="app-root" hidden>
+
+    <!-- =================== WELCOME =================== -->
+    <section id="screen-welcome" class="screen screen-welcome" aria-label="Selamat datang">
+      <div class="welcome-hero">
+        <div class="welcome-logo" aria-hidden="true">
+          <img src="assets/logo.svg" alt="" width="72" height="72" />
+        </div>
+        <p class="welcome-salam">Assalamu&rsquo;alaikum Warahmatullahi Wabarakatuh 👋</p>
+        <h1 class="welcome-title">Selamat Datang</h1>
+        <p class="welcome-sub">
+          Pendaftaran Santri Baru<br />
+          Pesantren Mitra Husnul Khatimah<br />
+          <small>Tanjungsari, Sumedang</small>
+        </p>
+        <span class="welcome-badge">
+          <i data-lucide="school"></i>
+          Khusus Jenjang SMP
+        </span>
+      </div>
+      <div class="welcome-card">
+        <p class="welcome-card-text">
+          Pesantren Mitra Husnul Khatimah saat ini <strong>hanya menyediakan pendidikan untuk jenjang SMP</strong> (Sekolah Menengah Pertama). Silakan lengkapi formulir pendaftaran berikut — data kamu tersimpan otomatis di perangkat ini, dan dapat dilanjutkan kapan saja.
+        </p>
+      </div>
+      <div class="welcome-cta">
+        <button id="btn-start" class="btn btn-primary btn-block" type="button">
+          Mulai Pendaftaran
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- =================== FORM SHELL =================== -->
+    <section id="screen-form" class="screen screen-form" aria-label="Formulir pendaftaran" hidden>
+      <!-- Top app bar -->
+      <header class="appbar">
+        <button id="btn-back" class="icon-btn" type="button" aria-label="Kembali">
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <div class="appbar-progress">
+          <div id="appbar-progress-bar" class="appbar-progress-bar" style="width:0%"></div>
+        </div>
+        <button id="btn-exit" class="icon-btn" type="button" aria-label="Keluar ke halaman utama">
+          <i data-lucide="x"></i>
+        </button>
+      </header>
+
+      <!-- Step header -->
+      <div class="step-header">
+        <p id="step-title" class="step-title">Data Santri</p>
+        <div class="step-meta">
+          <span id="step-counter">1 dari 4</span>
+          <div class="step-dots" id="step-dots" role="list" aria-label="Indikator langkah"></div>
+        </div>
+      </div>
+
+      <!-- Step container -->
+      <div class="step-container" id="step-container">
+
+        <!-- ========== STEP 1: DATA SANTRI ========== -->
+        <article class="step" data-step="santri" aria-label="Data santri">
+          <h2 class="step-heading">Data Diri Calon Santri</h2>
+          <p class="step-subheading">Lengkapi data pribadi calon santri berikut.</p>
+          <div class="step-notice" role="note">
+            <i data-lucide="info"></i>
+            <p class="step-notice-text">
+              Pesantren Mitra Husnul Khatimah <strong>hanya menerima pendaftaran untuk jenjang SMP</strong>. Asal sekolah yang dimaksud adalah <strong>SD / MI</strong> (sekolah dasar) tempat calon santri sebelumnya belajar.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="santri_nama" class="field-label">Nama Lengkap <span class="req">*</span></label>
+            <input type="text" id="santri_nama" name="nama_lengkap" class="field-input" autocomplete="name" placeholder="Muhammad Fulan bin Ahmad" data-validate="required,name" />
+            <p class="field-error" data-error="santri_nama" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="santri_tempat_lahir" class="field-label">Tempat Lahir <span class="req">*</span></label>
+            <input type="text" id="santri_tempat_lahir" name="tempat_lahir" class="field-input" placeholder="Bandung" data-validate="required" />
+            <p class="field-error" data-error="santri_tempat_lahir" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="santri_jk_label">Jenis Kelamin <span class="req">*</span></span>
+            <div class="seg-control" role="radiogroup" aria-labelledby="santri_jk_label">
+              <label class="seg" tabindex="0">
+                <input type="radio" name="jenis_kelamin" value="Laki-laki" />
+                <span>Laki-laki</span>
+              </label>
+              <label class="seg" tabindex="0">
+                <input type="radio" name="jenis_kelamin" value="Perempuan" />
+                <span>Perempuan</span>
+              </label>
+            </div>
+            <p class="field-error" data-error="jenis_kelamin" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="santri_tanggal_lahir" class="field-label">Tanggal Lahir <span class="req">*</span></label>
+            <input type="date" id="santri_tanggal_lahir" name="tanggal_lahir" class="field-input" data-validate="required,age" />
+            <p class="field-error" data-error="santri_tanggal_lahir" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="santri_asal_sekolah" class="field-label">Asal Sekolah <span class="req">*</span></label>
+            <input type="text" id="santri_asal_sekolah" name="asal_sekolah" class="field-input" placeholder="SDN Tanjungsari 02 / MI Al-Hidayah" data-validate="required" />
+            <p class="field-hint">Nama sekolah dasar (SD) atau madrasah ibtidaiyah (MI) tempat calon santri sebelumnya belajar.</p>
+            <p class="field-error" data-error="santri_asal_sekolah" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="santri_alamat_sekolah" class="field-label">Alamat Asal Sekolah <span class="req">*</span></label>
+            <textarea id="santri_alamat_sekolah" name="alamat_asal_sekolah" class="field-input field-textarea" rows="3" placeholder="Jl. Pendidikan No. 1, Tanjungsari, Sumedang" data-validate="required"></textarea>
+            <p class="field-error" data-error="santri_alamat_sekolah" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="santri_nisn" class="field-label">NISN <span class="req">*</span></label>
+            <input type="text" id="santri_nisn" name="nisn" class="field-input" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="10 digit angka" data-validate="required,nisn" />
+            <p class="field-error" data-error="santri_nisn" role="alert"></p>
+          </div>
+        </article>
+
+        <!-- ========== STEP 3: DATA ORANG TUA ========== -->
+        <article class="step" data-step="ortu" aria-label="Data orang tua" hidden>
+          <!-- AYAH -->
+          <div class="substep">
+            <header class="substep-header">
+              <span class="substep-icon"><i data-lucide="user"></i></span>
+              <div>
+                <h2 class="step-heading">Data Ayah</h2>
+                <p class="step-subheading">Informasi tentang ayah kandung</p>
+              </div>
+            </header>
+
+            <div class="field">
+              <label for="ayah_nama" class="field-label">Nama Lengkap <span class="req">*</span></label>
+              <input type="text" id="ayah_nama" name="ayah_nama" class="field-input" autocomplete="name" placeholder="Nama ayah" data-validate="required,name" />
+              <p class="field-error" data-error="ayah_nama" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <span class="field-label" id="ayah_status_label">Status <span class="req">*</span></span>
+              <select id="ayah_status" name="ayah_status" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih status —</option>
+                <option value="Masih Hidup">Masih Hidup</option>
+                <option value="Sudah Meninggal">Sudah Meninggal</option>
+                <option value="Tidak Diketahui">Tidak Diketahui</option>
+              </select>
+              <p class="field-error" data-error="ayah_status" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ayah_pendidikan" class="field-label">Pendidikan Terakhir <span class="req">*</span></label>
+              <select id="ayah_pendidikan" name="ayah_pendidikan" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih pendidikan —</option>
+                <option value="Tidak Sekolah">Tidak Sekolah</option>
+                <option value="SD/MI">SD / MI</option>
+                <option value="SMP/MTs">SMP / MTs</option>
+                <option value="SMA/MA/SMK">SMA / MA / SMK</option>
+                <option value="D1/D2/D3">Diploma (D1-D3)</option>
+                <option value="S1">Sarjana (S1)</option>
+                <option value="S2">Magister (S2)</option>
+                <option value="S3">Doktor (S3)</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+              <p class="field-error" data-error="ayah_pendidikan" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ayah_pekerjaan" class="field-label">Pekerjaan Utama <span class="req">*</span></label>
+              <input type="text" id="ayah_pekerjaan" name="ayah_pekerjaan" class="field-input" placeholder="Wiraswasta / PNS / Petani" data-validate="required" />
+              <p class="field-error" data-error="ayah_pekerjaan" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ayah_penghasilan" class="field-label">Penghasilan per Bulan <span class="req">*</span></label>
+              <select id="ayah_penghasilan" name="ayah_penghasilan" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih range —</option>
+                <option value="< 1.000.000">Kurang dari Rp 1.000.000</option>
+                <option value="1.000.000 - 3.000.000">Rp 1.000.000 — Rp 3.000.000</option>
+                <option value="3.000.000 - 5.000.000">Rp 3.000.000 — Rp 5.000.000</option>
+                <option value="5.000.000 - 10.000.000">Rp 5.000.000 — Rp 10.000.000</option>
+                <option value="> 10.000.000">Lebih dari Rp 10.000.000</option>
+                <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+              </select>
+              <p class="field-error" data-error="ayah_penghasilan" role="alert"></p>
+            </div>
+          </div>
+
+          <hr class="substep-divider" />
+
+          <!-- IBU -->
+          <div class="substep">
+            <header class="substep-header">
+              <span class="substep-icon"><i data-lucide="user"></i></span>
+              <div>
+                <h2 class="step-heading">Data Ibu Kandung</h2>
+                <p class="step-subheading">Informasi tentang ibu kandung</p>
+              </div>
+            </header>
+
+            <div class="field">
+              <label for="ibu_nama" class="field-label">Nama Lengkap <span class="req">*</span></label>
+              <input type="text" id="ibu_nama" name="ibu_nama" class="field-input" autocomplete="name" placeholder="Nama ibu" data-validate="required,name" />
+              <p class="field-error" data-error="ibu_nama" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <span class="field-label" id="ibu_status_label">Status <span class="req">*</span></span>
+              <select id="ibu_status" name="ibu_status" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih status —</option>
+                <option value="Masih Hidup">Masih Hidup</option>
+                <option value="Sudah Meninggal">Sudah Meninggal</option>
+                <option value="Tidak Diketahui">Tidak Diketahui</option>
+              </select>
+              <p class="field-error" data-error="ibu_status" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ibu_pendidikan" class="field-label">Pendidikan Terakhir <span class="req">*</span></label>
+              <select id="ibu_pendidikan" name="ibu_pendidikan" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih pendidikan —</option>
+                <option value="Tidak Sekolah">Tidak Sekolah</option>
+                <option value="SD/MI">SD / MI</option>
+                <option value="SMP/MTs">SMP / MTs</option>
+                <option value="SMA/MA/SMK">SMA / MA / SMK</option>
+                <option value="D1/D2/D3">Diploma (D1-D3)</option>
+                <option value="S1">Sarjana (S1)</option>
+                <option value="S2">Magister (S2)</option>
+                <option value="S3">Doktor (S3)</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+              <p class="field-error" data-error="ibu_pendidikan" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ibu_pekerjaan" class="field-label">Pekerjaan Utama <span class="req">*</span></label>
+              <input type="text" id="ibu_pekerjaan" name="ibu_pekerjaan" class="field-input" placeholder="Ibu Rumah Tangga / Guru / PNS" data-validate="required" />
+              <p class="field-error" data-error="ibu_pekerjaan" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="ibu_penghasilan" class="field-label">Penghasilan per Bulan <span class="req">*</span></label>
+              <select id="ibu_penghasilan" name="ibu_penghasilan" class="field-input field-select" data-validate="required">
+                <option value="">— Pilih range —</option>
+                <option value="< 1.000.000">Kurang dari Rp 1.000.000</option>
+                <option value="1.000.000 - 3.000.000">Rp 1.000.000 — Rp 3.000.000</option>
+                <option value="3.000.000 - 5.000.000">Rp 3.000.000 — Rp 5.000.000</option>
+                <option value="5.000.000 - 10.000.000">Rp 5.000.000 — Rp 10.000.000</option>
+                <option value="> 10.000.000">Lebih dari Rp 10.000.000</option>
+                <option value="Tidak Berpenghasilan">Tidak Berpenghasilan</option>
+              </select>
+              <p class="field-error" data-error="ibu_penghasilan" role="alert"></p>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========== STEP 4: ALAMAT ========== -->
+        <article class="step" data-step="alamat" aria-label="Data alamat" hidden>
+          <h2 class="step-heading">Domisili kamu</h2>
+          <p class="step-subheading">Alamat tempat tinggal saat ini</p>
+
+          <div class="field">
+            <label for="alamat_lengkap" class="field-label">Alamat Lengkap <span class="req">*</span></label>
+            <textarea id="alamat_lengkap" name="alamat_lengkap" class="field-input field-textarea" rows="6" placeholder="Jl. Mawar No. 12, RT 02 RW 03, Kel. Sukamaju, Kec. Cibiru, Kota Bandung, Jawa Barat 40619" data-validate="required"></textarea>
+            <p class="field-hint">Tuliskan alamat lengkap: jalan, RT/RW, kelurahan, kecamatan, kota, provinsi, kode pos.</p>
+            <p class="field-error" data-error="alamat_lengkap" role="alert"></p>
+          </div>
+        </article>
+
+        <!-- ========== STEP 5: DOKUMEN ========== -->
+        <article class="step" data-step="dokumen" aria-label="Upload dokumen" hidden>
+          <h2 class="step-heading">Unggah dokumenmu</h2>
+          <p class="step-subheading">Siapkan dokumen dalam format PDF / JPG. Maks 10 MB per file.</p>
+
+          <!--
+            NOTE: Spesifikasi asli menyebut "SCAN KARTU KELUARGA" dua kali.
+            Setelah ditinjau, kami anggap duplikasi dan hanya menyediakan satu field KK.
+            TODO: Konfirmasi apakah field KK kedua pada spesifikasi asli merupakan dokumen berbeda.
+          -->
+          <div id="dokumen-list" class="dokumen-list">
+            <!-- Kartu dokumen di-render oleh JavaScript -->
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Sticky bottom action bar -->
+      <footer class="action-bar" id="action-bar">
+        <button id="btn-prev" class="btn btn-ghost btn-flex" type="button">
+          <i data-lucide="arrow-left"></i>
+          Kembali
+        </button>
+        <button id="btn-next" class="btn btn-primary btn-flex" type="button">
+          Lanjut
+          <i data-lucide="arrow-right"></i>
+        </button>
+        <button id="btn-submit" class="btn btn-primary btn-flex btn-submit" type="button" hidden>
+          <i data-lucide="send"></i>
+          Kirim Pendaftaran
+        </button>
+      </footer>
+    </section>
+
+    <!-- =================== PROCESSING =================== -->
+    <section id="screen-processing" class="screen screen-processing" aria-label="Memproses pendaftaran" hidden>
+      <div class="processing-inner">
+        <div class="processing-logo" aria-hidden="true">
+          <img src="assets/logo.svg" alt="" width="72" height="72" />
+        </div>
+        <h1 class="processing-title" id="processing-title">Menyiapkan pendaftaran…</h1>
+        <p class="processing-text">
+          Data dan dokumenmu sedang diproses.<br />
+          Mohon <strong>jangan tutup halaman</strong> ini.
+        </p>
+        <ul class="processing-steps" id="processing-steps" aria-live="polite">
+          <li data-step="validate"><span class="ps-dot"></span><span class="ps-text">Memeriksa data</span></li>
+          <li data-step="prepare"><span class="ps-dot"></span><span class="ps-text">Menyiapkan dokumen</span></li>
+          <li data-step="upload"><span class="ps-dot"></span><span class="ps-text">Mengupload dokumen</span></li>
+          <li data-step="save"><span class="ps-dot"></span><span class="ps-text">Menyimpan data</span></li>
+          <li data-step="done"><span class="ps-dot"></span><span class="ps-text">Menyelesaikan pendaftaran</span></li>
+        </ul>
+        <div class="processing-spinner" aria-hidden="true">
+          <span class="spinner-dot"></span>
+          <span class="spinner-dot"></span>
+          <span class="spinner-dot"></span>
+          <span class="spinner-dot"></span>
+          <span class="spinner-dot"></span>
+        </div>
+        <p class="processing-status" id="processing-status">Sedang mengirim pendaftaran…</p>
+      </div>
+    </section>
+
+    <!-- =================== SUCCESS =================== -->
+    <section id="screen-success" class="screen screen-success" aria-label="Pendaftaran berhasil" hidden>
+      <div class="success-confetti" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="success-inner">
+        <div class="success-check" aria-hidden="true">
+          <svg viewBox="0 0 52 52" width="64" height="64">
+            <circle cx="26" cy="26" r="24" fill="none" stroke="currentColor" stroke-width="2" class="success-check-circle" />
+            <path d="M14 27l8 8 16-18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="success-check-tick" />
+          </svg>
+        </div>
+        <h1 class="success-title">Alhamdulillah! 🎉</h1>
+        <p class="success-sub">Pendaftaranmu berhasil dikirim.</p>
+
+        <div class="success-card">
+          <p class="success-card-label">Nomor Pendaftaran</p>
+          <p class="success-card-number" id="success-reg-number">PSB-XXXX-00000</p>
+          <button id="btn-copy-reg" class="btn btn-ghost btn-block" type="button">
+            <i data-lucide="copy"></i>
+            Salin Nomor
+          </button>
+        </div>
+
+        <div class="success-card">
+          <p class="success-card-text">
+            Satu langkah lagi.<br />
+            <strong>Konfirmasi ke Admin PSB</strong> dengan mengklik tombol di bawah ini
+            agar pendaftaran ananda segera diproses.
+          </p>
+          <a id="btn-group-info" class="btn btn-whatsapp btn-block" href="https://wa.me/6282126016930" target="_blank" rel="noopener">
+            <i data-lucide="message-circle"></i>
+            Konfirmasi ke Admin
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <p class="success-card-help" style="margin-top:10px;font-size:12px;color:var(--muted);text-align:center;">
+            No. WhatsApp Admin: <strong>0821-2601-6930</strong>
+          </p>
+        </div>
+
+        <button id="btn-register-again" class="btn btn-text btn-block" type="button">Daftar santri lain</button>
+      </div>
+    </section>
+
+    <!-- =================== ERROR =================== -->
+    <section id="screen-error" class="screen screen-error" aria-label="Pengiriman gagal" hidden>
+      <div class="error-inner">
+        <div class="error-icon" aria-hidden="true"><i data-lucide="cloud-off"></i></div>
+        <h1 class="error-title">Belum berhasil dikirim</h1>
+        <p class="error-text">
+          Data pendaftaranmu belum berhasil disimpan.<br />
+          Tenang, data yang sudah kamu isi masih tersimpan di perangkat ini.
+        </p>
+        <p class="error-detail" id="error-detail" hidden></p>
+        <button id="btn-retry" class="btn btn-primary btn-block" type="button">
+          <i data-lucide="refresh-cw"></i>
+          Coba Lagi
+        </button>
+        <button id="btn-back-to-form" class="btn btn-text btn-block" type="button">Kembali ke form</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =================== DRAFT RECOVERY MODAL =================== -->
+  <div id="modal-draft" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-draft-title" hidden>
+    <div class="modal-backdrop" data-close="modal-draft"></div>
+    <div class="modal-dialog">
+      <div class="modal-icon" aria-hidden="true"><i data-lucide="save"></i></div>
+      <h2 id="modal-draft-title" class="modal-title">Draft pendaftaran ditemukan</h2>
+      <p class="modal-text">
+        Kamu memiliki data pendaftaran yang belum selesai di perangkat ini.
+      </p>
+      <div class="modal-actions">
+        <button id="btn-draft-restart" class="btn btn-ghost btn-flex" type="button">Mulai dari Awal</button>
+        <button id="btn-draft-continue" class="btn btn-primary btn-flex" type="button">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== EXIT CONFIRM MODAL =================== -->
+  <div id="modal-exit" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-exit-title" hidden>
+    <div class="modal-backdrop" data-close="modal-exit"></div>
+    <div class="modal-dialog">
+      <div class="modal-icon" aria-hidden="true"><i data-lucide="log-out"></i></div>
+      <h2 id="modal-exit-title" class="modal-title">Keluar dari pendaftaran?</h2>
+      <p class="modal-text">
+        Draft kamu akan tetap tersimpan di perangkat ini dan bisa dilanjutkan nanti.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost btn-flex" type="button" data-close="modal-exit">Batal</button>
+        <button id="btn-exit-confirm" class="btn btn-primary btn-flex" type="button">Ya, Keluar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================== TOAST =================== -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
